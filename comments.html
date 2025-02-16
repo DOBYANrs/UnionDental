@@ -1,0 +1,95 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Submitted Entries</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            text-align: center;
+            padding: 20px;
+        }
+        h1 {
+            color: #003366;
+        }
+        #entries-container {
+            max-width: 800px;
+            margin: 20px auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        .entry-box {
+            background: #f9f9f9;
+            padding: 10px;
+            margin-top: 10px;
+            border-left: 4px solid #0078d7;
+            text-align: left;
+        }
+        .entry-box p {
+            margin: 5px 0;
+        }
+        .clear-btn {
+            background-color: #ff4d4d;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+        .clear-btn:hover {
+            background-color: #cc0000;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Submitted Entries</h1>
+    <div id="entries-container">
+        <h3>All Messages</h3>
+        <div id="entries-list"></div>
+        <button class="clear-btn" onclick="clearEntries()">Clear All Entries</button>
+    </div>
+
+    <script>
+        function displayEntries() {
+            const entriesList = document.getElementById("entries-list");
+            entriesList.innerHTML = ""; // Clear previous content
+
+            const entries = JSON.parse(localStorage.getItem("entries")) || [];
+
+            if (entries.length === 0) {
+                entriesList.innerHTML = "<p>No messages yet.</p>";
+                return;
+            }
+
+            entries.forEach((entry, index) => {
+                const entryBox = document.createElement("div");
+                entryBox.className = "entry-box";
+                entryBox.innerHTML = `
+                    <p><strong>Name:</strong> ${entry.name}</p>
+                    <p><strong>Email:</strong> ${entry.email}</p>
+                    <p><strong>Message:</strong> ${entry.message}</p>
+                    <p><em>${entry.date}</em></p>
+                `;
+                entriesList.appendChild(entryBox);
+            });
+        }
+
+        function clearEntries() {
+            if (confirm("Are you sure you want to delete all entries?")) {
+                localStorage.removeItem("entries");
+                displayEntries();
+            }
+        }
+
+        // Load and display entries on page load
+        displayEntries();
+    </script>
+
+</body>
+</html>
