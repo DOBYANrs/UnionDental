@@ -147,7 +147,7 @@
             margin-bottom: 15px;
         }
 
-        .next-btn {
+        .next-btn, .comments-btn {
             background: linear-gradient(135deg, var(--secondary-color), var(--accent-color));
             color: white;
             border: none;
@@ -159,14 +159,18 @@
             transition: var(--transition);
             width: 100%;
             max-width: 300px;
-            margin: 20px auto 0;
+            margin: 10px auto;
             display: block;
             text-transform: uppercase;
             letter-spacing: 1px;
             box-shadow: 0 4px 15px rgba(0, 120, 215, 0.2);
         }
 
-        .next-btn:hover {
+        .comments-btn {
+            background: linear-gradient(135deg, #6c757d, #495057);
+        }
+
+        .next-btn:hover, .comments-btn:hover {
             transform: translateY(-3px);
             box-shadow: 0 6px 20px rgba(0, 120, 215, 0.3);
         }
@@ -242,6 +246,12 @@
             <button type="button" class="next-btn" onclick="redirectToLogin()">
                 <i class="fas fa-arrow-right"></i> Continue
             </button>
+
+            <!-- Comments Button -->
+            <button type="button" class="comments-btn" onclick="openComments()">
+                <i class="fas fa-comments"></i> Comments
+            </button>
+
             <div class="error-message" id="error-message"></div>
         </form>
     </div>
@@ -278,6 +288,11 @@
                 errorMessage.offsetHeight; // Trigger reflow
                 errorMessage.style.animation = 'shake 0.5s ease';
             }
+        }
+
+        function openComments() {
+            // Redirect to comments.html
+            window.location.href = "comments.html";
         }
 
         // Add hover effect to doctor cards
