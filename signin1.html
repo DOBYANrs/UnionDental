@@ -27,7 +27,8 @@
 
         body {
             font-family: 'Poppins', sans-serif;
-            background: linear-gradient(135deg, var(--light-bg), #ffffff);
+            background: linear-gradient(135deg, rgba(0, 51, 102, 0.95), rgba(0, 120, 215, 0.9)), 
+                        url('https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&w=2000&q=80');
             color: var(--text-color);
             min-height: 100vh;
             padding: 40px 20px;
@@ -185,8 +186,9 @@
             }
         }
     </style>
+ 
 </head>
-<body>
+ <body>
     <div class="dashboard-container">
         <div class="dashboard-header">
             <h1>Appointments Dashboard</h1>
@@ -212,39 +214,49 @@
     </div>
 
     <script>
-        // Simulate login (for demonstration)
-        const loggedInUser = {
-            username: "shiferawdegu@gmail.com",
-            password: "shiferaw1957"
-        };
+        async function fetchAppointments() {
+            let appointments = JSON.parse(localStorage.getItem('appointments')) || [];
+            try {
+                const responseAmharic = await fetch('entryamharic.html');
+                const responseEnglish = await fetch('entryenglish.html');
 
-        // Get appointments from localStorage
-        const appointments = JSON.parse(localStorage.getItem('appointments')) || [];
-        const appointmentsList = document.getElementById('appointments-list');
+                if (responseAmharic.ok && responseEnglish.ok) {
+                    const amharicText = await responseAmharic.text();
+                    const englishText = await responseEnglish.text();
+                    
+                    const amharicAppointments = extractAppointmentsFromHTML(amharicText);
+                    const englishAppointments = extractAppointmentsFromHTML(englishText);
+                    
+                    appointments = [...appointments, ...amharicAppointments, ...englishAppointments];
+                }
+            } catch (error) {
+                console.error("Error fetching appointments:", error);
+            }
+            displayAppointments(appointments);
+        }
 
-        function formatDate(dateString) {
-            const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-            return new Date(dateString).toLocaleDateString('en-US', options);
+        function extractAppointmentsFromHTML(htmlText) {
+            const parser = new DOMParser();
+            const doc = parser.parseFromString(htmlText, 'text/html');
+            const form = doc.getElementById('appointment-form');
+
+            if (!form) return [];
+
+            const formData = new FormData(form);
+            return [Object.fromEntries(formData.entries())];
         }
 
         function createAppointmentRow(appointment, index) {
             const row = document.createElement('tr');
-            const timeSlot = appointment['appointment-time'];
-            
             row.innerHTML = `
-                <td><i class="fas fa-user-circle" style="color: var(--secondary-color); margin-right: 8px;"></i>${appointment.name}</td>
+                <td>${appointment.name}</td>
                 <td>${appointment.age}</td>
-                <td><i class="fas fa-phone" style="color: var(--secondary-color); margin-right: 8px;"></i>${appointment.contact}</td>
+                <td>${appointment.contact}</td>
                 <td>${appointment.symptoms}</td>
-                <td>${formatDate(appointment['appointment-date'])}</td>
+                <td>${appointment['appointment-date']}</td>
+                <td>${appointment['appointment-time']}</td>
                 <td>
-                    <span class="status-badge ${timeSlot.toLowerCase()}">
-                        <i class="far fa-clock"></i>
-                        ${timeSlot}
-                    </span>
-                </td>
-                <td>
-                    <button class="delete-btn" onclick="deleteAppointment(${index})">
+ <button class="delete-btn" onclick="deleteAppointment(${index})">
                         <i class="fas fa-trash-alt"></i>
                         Delete
                     </button>
@@ -253,46 +265,31 @@
             return row;
         }
 
-        function displayAppointments() {
+        function displayAppointments(appointments) {
+            const appointmentsList = document.getElementById('appointments-list');
             appointmentsList.innerHTML = '';
             let hasAppointments = false;
 
             appointments.forEach((appointment, index) => {
-                if (appointment.doctor === "Dr. Shiferaw Degu") {
+                if (appointment.doctor === "Dr. Shiferaw Degu" || appointment.doctor === "ዶ/ር ሸፈራው ደጉ") {
                     hasAppointments = true;
                     appointmentsList.appendChild(createAppointmentRow(appointment, index));
                 }
             });
 
             if (!hasAppointments) {
-                const emptyRow = document.createElement('tr');
-                emptyRow.innerHTML = `
-                    <td colspan="7">
-                        <div class="empty-state">
-                            <i class="far fa-calendar-times"></i>
-                            <p>No appointments scheduled at this time.</p>
-                        </div>
-                    </td>
-                `;
-                appointmentsList.appendChild(emptyRow);
+                appointmentsList.innerHTML = `<tr><td colspan="7">No appointments scheduled.</td></tr>`;
             }
         }
 
         function deleteAppointment(index) {
-            if (confirm('Are you sure you want to delete this appointment?')) {
-                // Remove the appointment from the appointments array
-                appointments.splice(index, 1);
-
-                // Update localStorage with the new appointments list
-                localStorage.setItem('appointments', JSON.stringify(appointments));
-
-                // Refresh the displayed appointments
-                displayAppointments();
-            }
+            let appointments = JSON.parse(localStorage.getItem('appointments')) || [];
+            appointments.splice(index, 1);
+            localStorage.setItem('appointments', JSON.stringify(appointments));
+            fetchAppointments();
         }
 
-        // Initial display
-        displayAppointments();
+        fetchAppointments();
     </script>
 </body>
 </html>
