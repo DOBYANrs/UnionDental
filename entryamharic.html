@@ -297,8 +297,8 @@
                 <label for="appointment-time">የቀጠሮ ሰዓት ይምረጡ</label>
                 <select id="appointment-time" name="appointment-time" required>
                     <option value="" disabled selected>ሰዓት ይምረጡ</option>
-                    <option value="ጠዋት">ጠዋት (9:00 - 2:00 )</option>
-                    <option value="ከሰዓት">ከሰዓት (3:00 - 7:00 )</option>
+                    <option value="ጠዋት">ጠዋት (3:00 - 8:00 )</option>
+                    <option value="ከሰዓት">ከሰዓት (9:00 - 1:00 )</option>
                 </select>
             </div>
 
@@ -381,8 +381,8 @@
             if (!selectedDoctor) {
                 timeSelect.innerHTML = `
                     <option value="" disabled selected>ሰዓት ይምረጡ</option>
-                    <option value="ጠዋት">ጠዋት (9:00 - 2:00 )</option>
-                    <option value="ከሰዓት">ከሰዓት (3:00 - 7:00 )</option>
+                    <option value="ጠዋት">ጠዋት (3:00 - 8:00 )</option>
+                    <option value="ከሰዓት">ከሰዓት (9:00 - 1:00 )</option>
                 `;
                 warningElement.style.display = 'none';
                 return;
@@ -392,7 +392,7 @@
             if (doctorSchedule && doctorSchedule[dayName]) {
                 doctorSchedule[dayName].forEach(time => {
                     timeSelect.innerHTML += `<option value="${time}">${time} (${time === 'ጠዋት' ? 
-                        '9:00 - 2:00 ' : '3:00  - 7:00 '})</option>`;
+                        '3:00 - 8:00 ' : '9:00  - 1:00 '})</option>`;
                 });
                 warningElement.style.display = 'none';
             } else {
