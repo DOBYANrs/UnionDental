@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ቀጠሮ ይያዙ - ዩኒየን ዴንታል ክሊኒክ</title>
+    <title>ቀጠሮዎን ይያዙ - ዩኒየን የጥርስ ህክምና ክሊኒክ</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Ethiopic:wght@400;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
         :root {
             --primary-color: #003366;
@@ -23,7 +23,7 @@
         }
 
         body {
-            font-family: 'Poppins', sans-serif;
+            font-family: 'Noto Sans Ethiopic', 'Poppins', sans-serif;
             background: linear-gradient(135deg, var(--light-bg), #ffffff);
             color: var(--text-color);
             line-height: 1.6;
@@ -45,18 +45,12 @@
         }
 
         @keyframes slideIn {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         h1 {
-            font-family: 'Playfair Display', serif;
+            font-family: 'Noto Sans Ethiopic', serif;
             color: var(--primary-color);
             font-size: 2.5em;
             text-align: center;
@@ -113,10 +107,7 @@
         }
 
         @keyframes fadeInUp {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         .form-group label {
@@ -135,7 +126,7 @@
             border-radius: 10px;
             font-size: 1em;
             transition: var(--transition);
-            font-family: 'Poppins', sans-serif;
+            font-family: 'Noto Sans Ethiopic', 'Poppins', sans-serif;
         }
 
         .form-group input:focus,
@@ -171,13 +162,6 @@
         .submit-btn:hover {
             transform: translateY(-3px);
             box-shadow: 0 6px 20px rgba(0, 120, 215, 0.3);
-        }
-
-        .warning-message {
-            color: #dc3545;
-            font-size: 0.9em;
-            margin-top: 5px;
-            display: none;
         }
 
         .language-switch {
@@ -220,20 +204,22 @@
             color: white;
         }
 
-        @media (max-width: 768px) {
-            .form-container {
-                padding: 30px 20px;
-            }
+        .warning-message {
+            color: #dc3545;
+            font-size: 0.9em;
+            margin-top: 5px;
+            display: none;
+        }
 
-            h1 {
-                font-size: 2em;
-            }
+        @media (max-width: 768px) {
+            .form-container { padding: 30px 20px; }
+            h1 { font-size: 2em; }
         }
     </style>
 </head>
 <body>
     <div class="login-doctor">
-        <a href="select.html">ዶክተርስ ሎጊን</a>
+        <a href="selectamharic.html">ዶክተሮች መግቢያ</a>
     </div>
 
     <div class="language-switch">
@@ -241,10 +227,11 @@
     </div>
 
     <div class="form-container">
-        <h1>ቀጠሮ ይያዙ</h1>
+        <h1>ቀጠሮዎን ይያዙ</h1>
 
         <p class="instructions">
-            እባክዎ ቀጠሮ ለመያዝ የሚከተለውን ቅጽ ይሙሉ። <strong>እሁድ ቀጠሮ አይሰጥም።</strong>
+            እባክዎ ቀጠሮ ለመያዝ ከዚህ በታች ያለውን ፎርም ይሙሉ። 
+            <strong>እሁድ ቀኖች ለቀጠሮ አይደሉም</strong>።
         </p>
 
         <div class="learn-doctors">
@@ -254,108 +241,106 @@
         </div>
 
         <form id="appointment-form">
-            <div class="form-group">
+            <!-- Form Groups -->
+            <div class="form-group" style="animation-delay: 0.1s;">
                 <label for="name">ሙሉ ስም</label>
                 <input type="text" id="name" name="name" required>
             </div>
 
-            <div class="form-group">
+            <div class="form-group" style="animation-delay: 0.2s;">
                 <label for="gender">ጾታ</label>
                 <select id="gender" name="gender" required>
                     <option value="" disabled selected>ጾታ ይምረጡ</option>
-                    <option value="Male">ወንድ</option>
-                    <option value="Female">ሴት</option>
+                    <option value="ወንድ">ወንድ</option>
+                    <option value="ሴት">ሴት</option>
                 </select>
             </div>
 
-            <div class="form-group">
+            <div class="form-group" style="animation-delay: 0.3s;">
                 <label for="age">እድሜ</label>
                 <input type="number" id="age" name="age" required>
             </div>
 
-            <div class="form-group">
+            <div class="form-group" style="animation-delay: 0.4s;">
                 <label for="contact">ስልክ ቁጥር</label>
                 <div style="display: flex; gap: 10px;">
                     <select id="country-code" name="country-code" style="flex: 0.3;">
                         <option value="+251">+251 (ኢትዮጵያ)</option>
                         <option value="+1">+1 (አሜሪካ)</option>
                     </select>
-                    <input type="tel" id="contact" name="contact" pattern="[0-9]{9}" placeholder="ስልክ ቁጥር ያስገቡ" style="flex: 0.7;" required>
+                    <input type="tel" id="contact" name="contact" pattern="[0-9]{}" placeholder="ስልክ ቁጥርዎን ያስገቡ" style="flex: 0.7;" required>
                 </div>
             </div>
 
-            <div class="form-group">
-                <label for="symptoms">የህመም ምልክቶች</label>
+            <div class="form-group" style="animation-delay: 0.5s;">
+                <label for="symptoms">ዋና ቅሬታዎች</label>
                 <textarea id="symptoms" name="symptoms" rows="4" required></textarea>
             </div>
 
-            <div class="form-group">
-                <label for="doctor">ሐኪም ይምረጡ (አማራጭ)</label>
+            <div class="form-group" style="animation-delay: 0.6s;">
+                <label for="doctor">ዶክተር ይምረጡ (አማራጭ)</label>
                 <select id="doctor" name="doctor">
-                    <option value="">ማንኛውም ሐኪም</option>
-                    <option value="Dr. Wondwossen Fantaye">ዶ/ር ወንድወሰን ፋንታዬ</option>
-                    <option value="Dr. Shiferaw Degu">ዶ/ር ሽፈራው ደጉ</option>
-                    <option value="Dr. Shewa Work">ዶ/ር ሸዋ ወርቅ</option>
+                    <option value="">ማንኛውም የሚገኝ ዶክተር</option>
+                    <option value="ዶ/ር ወንድወሰን ፋንታዬ">ዶ/ር ወንድወሰን ፋንታዬ</option>
+                    <option value="ዶ/ር ሸፈራው ደጉ">ዶ/ር ሸፈራው ደጉ</option>
+                    <option value="ዶ/ር ሸዋ ወርቅ">ዶ/ር ሸዋ ወርቅ</option>
                 </select>
             </div>
 
-            <div class="form-group">
-                <label for="appointment-date">የቀጠሮ ቀን</label>
+            <div class="form-group" style="animation-delay: 0.7s;">
+                <label for="appointment-date">ምርጦት ያለው የቀጠሮ ቀን</label>
                 <input type="date" id="appointment-date" name="appointment-date" required>
                 <div class="warning-message" id="date-warning"></div>
             </div>
 
-            <div class="form-group">
-                <label for="appointment-time">የቀጠሮ ሰዓት</label>
+            <div class="form-group" style="animation-delay: 0.8s;">
+                <label for="appointment-time">ምርጦት ያለው የቀጠሮ ሰዓት</label>
                 <select id="appointment-time" name="appointment-time" required>
                     <option value="" disabled selected>ሰዓት ይምረጡ</option>
-                    <option value="Morning">ጠዋት (9:00 - 2:00)</option>
-                    <option value="Afternoon">ከሰዓት በኋላ (3:00 - 7:00)</option>
+                    <option value="ጠዋት">ጠዋት (9:00 ጥዋት - 2:00 ከሰዓት)</option>
+                    <option value="ከሰዓት">ከሰዓት (3:00 ከሰዓት - 7:00 ከሰዓት)</option>
                 </select>
             </div>
 
             <button type="submit" class="submit-btn">
-                <i class="fas fa-calendar-check"></i> ቀጠሮ ይያዙ
+                <i class="fas fa-calendar-check"></i> ቀጠሮ ያስመዝግቡ
             </button>
         </form>
     </div>
-
     <script>
         const doctorSchedules = {
-            'Dr. Wondwossen Fantaye': {
-                'Monday': ['Afternoon'],
-                'Thursday': ['Afternoon'],
-                'Saturday': ['Afternoon']
+            'ዶ/ር ወንድወሰን ፋንታዬ': {
+                'ሰኞ': ['ከሰዓት'],
+                'ኃሙስ': ['ከሰዓት'],
+                'ቅዳሜ': ['ከሰዓት']
             },
-            'Dr. Shiferaw Degu': {
-                'Tuesday': ['Afternoon'],
-                'Wednesday': ['Afternoon'],
-                'Friday': ['Afternoon'],
-                'Saturday': ['Morning']
+            'ዶ/ር ሸፈራው ደጉ': {
+                'ማክሰኞ': ['ከሰዓት'],
+                'እሮብ': ['ከሰዓት'],
+                'ዐርብ': ['ከሰዓት'],
+                'ቅዳሜ': ['ጠዋት']
             },
-            'Dr. Shewa Work': {
-                'Monday': ['Morning'],
-                'Tuesday': ['Morning'],
-                'Wednesday': ['Morning'],
-                'Thursday': ['Morning'],
-                'Friday': ['Morning']
+            'ዶ/ር ሸዋ ወርቅ': {
+                'ሰኞ': ['ጠዋት'],
+                'ማክሰኞ': ['ጠዋት'],
+                'እሮብ': ['ጠዋት'],
+                'ኃሙስ': ['ጠዋት'],
+                'ዐርብ': ['ጠዋት']
             }
         };
 
         const maxAppointments = {
-            'Dr. Wondwossen Fantaye': 6,
-            'Dr. Shiferaw Degu': 10
+            'ዶ/ር ወንድወሰን ፋንታዬ': 6,
+            'ዶ/ር ሸፈራው ደጉ': 10
         };
 
-        function redirectToDoctors() {
-            window.location.href = 'profile2amh.html';
-        }
-
+        // Initialize date picker
         const today = new Date().toISOString().split('T')[0];
         document.getElementById('appointment-date').setAttribute('min', today);
 
         function getDayName(date) {
-            return date.toLocaleDateString('en-US', { weekday: 'long' });
+            const days = ['እሁድ', 'ሰኞ', 'ማክሰኞ', 'እሮብ', 'ኃሙስ', 'ዐርብ', 'ቅዳሜ'];
+            return days[date.getDay()];
         }
 
         function updateAvailableTimes() {
@@ -374,26 +359,30 @@
 
             if (selectedDate.getDay() === 0) {
                 dateInput.value = '';
+                warningElement.textContent = 'እሁድ ቀኖች ለቀጠሮ አይደሉም። እባክዎ ሌላ ቀን ይምረጡ።';
                 warningElement.style.display = 'block';
-                warningElement.textContent = 'እሁድ ቀጠሮ አይሰጥም።';
                 return;
             }
 
             const appointments = JSON.parse(localStorage.getItem('appointments')) || [];
-            const filteredAppointments = appointments.filter(app => app['doctor'] === selectedDoctor && app['appointment-date'] === dateInput.value);
+            const filteredAppointments = appointments.filter(app => 
+                app.doctor === selectedDoctor && 
+                app['appointment-date'] === dateInput.value
+            );
 
-            if (selectedDoctor && maxAppointments[selectedDoctor] && filteredAppointments.length >= maxAppointments[selectedDoctor]) {
+            if (selectedDoctor && maxAppointments[selectedDoctor] && 
+                filteredAppointments.length >= maxAppointments[selectedDoctor]) {
                 dateInput.value = '';
+                warningElement.textContent = `${selectedDoctor} ለዛሬው ቀን ከፍተኛውን የቀጠሮ ብዛት ረስቷል።`;
                 warningElement.style.display = 'block';
-                warningElement.textContent = `${selectedDoctor} በዚህ ቀን ከተቀመጡት በላይ ቀጠሮ አይኖርም።`;
                 return;
             }
 
             if (!selectedDoctor) {
                 timeSelect.innerHTML = `
                     <option value="" disabled selected>ሰዓት ይምረጡ</option>
-                    <option value="Morning">ጠዋት (9:00 - 2:00)</option>
-                    <option value="Afternoon">ከሰዓት በኋላ (3:00 - 7:00)</option>
+                    <option value="ጠዋት">ጠዋት (9:00 ጥዋት - 2:00 ከሰዓት)</option>
+                    <option value="ከሰዓት">ከሰዓት (3:00 ከሰዓት - 7:00 ከሰዓት)</option>
                 `;
                 warningElement.style.display = 'none';
                 return;
@@ -401,27 +390,60 @@
 
             const doctorSchedule = doctorSchedules[selectedDoctor];
             if (doctorSchedule && doctorSchedule[dayName]) {
-                const availableTimes = doctorSchedule[dayName];
-                availableTimes.forEach(time => {
-                    timeSelect.innerHTML += `<option value="${time}">${time === 'Morning' ? 'ጠዋት (9:00 - 2:00)' : 'ከሰዓት በኋላ (3:00 - 7:00)'}</option>`;
+                doctorSchedule[dayName].forEach(time => {
+                    timeSelect.innerHTML += `<option value="${time}">${time} (${time === 'ጠዋት' ? 
+                        '9:00 ጥዋት - 2:00 ከሰዓት' : '3:00 ከሰዓት - 7:00 ከሰዓት'})</option>`;
                 });
                 warningElement.style.display = 'none';
             } else {
                 dateInput.value = '';
+                warningElement.textContent = `${selectedDoctor} በ${dayName} ላይ አይገኝም። እባክዎ ሌላ ቀን ይምረጡ።`;
                 warningElement.style.display = 'block';
-warningMessage.textContent = `${selectedDoctor} በ${dayName} አይገኙም።`;
-            } else {
-                warningMessage.style.display = 'none';
             }
         }
 
-        document.getElementById('appointment-date').addEventListener('change', updateAvailableTimes);
-        document.getElementById('doctor').addEventListener('change', updateAvailableTimes);
-
-        document.getElementById('appointment-form').addEventListener('submit', (event) => {
-            event.preventDefault();
-            alert('ቀጠሮ በተሳካ ሁኔታ ተመዝግቧል።');
+        // Event Listeners
+        document.getElementById('appointment-date').addEventListener('input', updateAvailableTimes);
+        document.getElementById('doctor').addEventListener('change', () => {
+            if (document.getElementById('appointment-date').value) updateAvailableTimes();
         });
+
+        // Form Submission
+        document.getElementById('appointment-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(this);
+            const appointment = Object.fromEntries(formData.entries());
+
+            // Add validation for phone number pattern
+            const phonePattern = /^[0-9]{9,10}$/;
+            if (!phonePattern.test(appointment.contact)) {
+                alert('እባክዎ ትክክለኛ የስልክ ቁጥር ያስገቡ (9 ወይም 10 አሃዞች)');
+                return;
+            }
+
+            const appointments = JSON.parse(localStorage.getItem('appointments')) || [];
+            
+            // Check existing appointments
+            const existingAppointment = appointments.find(app => 
+                app.name === appointment.name &&
+                app['appointment-date'] === appointment['appointment-date'] &&
+                app['appointment-time'] === appointment['appointment-time']
+            );
+
+            if (existingAppointment) {
+                alert('ቀጠሮው አስቀድሞ በዚህ ቀን እና ሰዓት ተመዝግቧል።');
+                return;
+            }
+
+            appointments.push(appointment);
+            localStorage.setItem('appointments', JSON.stringify(appointments));
+            window.location.href = 'analysisamh.html';
+        });
+
+        function redirectToDoctors() {
+            window.location.href = 'select.html';
+        }
     </script>
 </body>
-</html>       
+</html>
